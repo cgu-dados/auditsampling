@@ -1,0 +1,10 @@
+Package: auditsampling
+Title: A auxiliary package to calculate some basic things in sampling. Most used para CGU auditors.
+Version: 0.0.0.9000
+Authors@R: person("Wagner", "Menke", email = "wagner.menke@cgu.gov.br", role = c("aut", "cre"))
+Description: The package contains some functions the help auditors in sampling process. 
+Depends: R (>= 3.4.3)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1.9000
