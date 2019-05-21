@@ -4,8 +4,8 @@
 \alias{nStrata}
 \title{Calculates the sample size in a stratified desgin}
 \usage{
-nStrata(data, stratanames, alpha, moe, S2 = NULL, pq = NULL, N = Inf,
-  method = c("none", "prop", "optimum"))
+nStrata(data, stratanames, alpha, moe, S2 = NULL, pq = NULL,
+  V = NULL, N = Inf, method = c("none", "prop", "optimum"))
 }
 \arguments{
 \item{data}{The data.frame containing the variable denoted as the cluster.}
@@ -45,4 +45,8 @@ nStrata(apipop,stratanames = "stype", alpha = 0.95, moe = 0.05,
         pq = 0.25, N = nrow(apipop), method = "prop")
 nStrata(apipop,stratanames = "stype", alpha = 0.95, moe = 0.05,
         pq = 0.25, N = nrow(apipop), method = "optimum")
+### Cochran's example (Cochran, W. G. (2007). Sampling techniques. John Wiley & Sons. p. 106-107)
+data_cochran=data.frame(stratum=rep(c(1:6),c(13,18,26,42,73,24)))
+nStrata(data_cochran,stratanames = "stratum", N=196, method = "optimum",
+S2=c(325^2,190^2,189^2,82^2,86^2,190^2),V=7974976)
 }
