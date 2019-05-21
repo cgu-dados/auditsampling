@@ -16,9 +16,11 @@ nStrata(data, stratanames, alpha, moe, S2 = NULL, pq = NULL,
 
 \item{moe}{Margin of error.}
 
-\item{S2}{The variance, as \eqn{\sigma^2}. Not necessary if `S2` is not `NULL`.}
+\item{S2}{The variance, as \eqn{\sigma^2}. Not necessary if `pq` or `V` is not `NULL`.}
 
-\item{pq}{The variance, as \eqn{P(1-P)}. Not necessary if `S2` is not `NULL`.}
+\item{pq}{The variance, as \eqn{P(1-P)}. Not necessary if `S2` or `V` is not `NULL`.}
+
+\item{V}{The variance, as \eqn{(d/t)^2}. Not necessary if `S2` or `pq` is not `NULL`.}
 
 \item{N}{Population size.}
 
