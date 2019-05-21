@@ -5,8 +5,9 @@
 #' @param stratanames The variable name of the considered strata. Can be a vector of variable names.
 #' @param alpha Confidence level.
 #' @param moe Margin of error.
-#' @param S2 The variance, as \eqn{\sigma^2}. Not necessary if `S2` is not `NULL`.
-#' @param pq The variance, as \eqn{P(1-P)}. Not necessary if `S2` is not `NULL`.
+#' @param S2 The variance, as \eqn{\sigma^2}. Not necessary if `pq` or `V` is not `NULL`.
+#' @param pq The variance, as \eqn{P(1-P)}. Not necessary if `S2` or `V` is not `NULL`.
+#' @param V The variance, as \eqn{(d/t)^2}. Not necessary if `S2` or `pq` is not `NULL`.
 #' @param N Population size.
 #' @param method A string with `none`, `prop` or `optimum`. With `optimum`, it uses Neyman allocation.
 #' @return The value (integer) of the number of elements to sample in stratified sampling. If `prop` or `optimum`
