@@ -4,11 +4,10 @@ Version: 0.0.0.9000
 Author: Wagner Menke <wagner.menke@cgu.gov.br>
 Maintainer: Wagner Menke <wagner.menke@cgu.gov.br>
 Description: The package contains some functions the help auditors in sampling process. 
-Depends: R (>= 3.4.3)
-Imports:
-  flextable,
-  officer
-License: What license is it under?
+Depends: R (>= 3.4.3),
+         flextable,
+         officer
+License: GNU-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1.9000
