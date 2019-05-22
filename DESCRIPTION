@@ -4,8 +4,8 @@ Version: 0.0.0.9000
 Author: Wagner Menke <wagner.menke@cgu.gov.br>
 Maintainer: Wagner Menke <wagner.menke@cgu.gov.br>
 Description: The package contains some functions the help auditors in sampling process. 
-Depends: R (>= 3.4.3),
-         flextable,
+Depends: R (>= 3.4.3)
+Imports: flextable,
          officer,
          stats
 License: GPL-3
