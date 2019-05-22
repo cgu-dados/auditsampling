@@ -1,4 +1,3 @@
-import(officer)
 import(flextable)
 export(NSubpop)
 export(nClusterProp)
