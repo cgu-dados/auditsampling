@@ -16,7 +16,7 @@
 #' \describe{
 #' \item{parameter} The label of the parameter.
 #' \item{n} The effective sample size.
-#' \item{cv} Variation coefficient
+#' \item{sigma} Variance.
 #' \item{point.estimate} Point estimate.
 #' \item{interval} Confidence interval.
 #' }
@@ -128,11 +128,11 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
   if(print.report==TRUE){
     inf.table=flextable::flextable(inferences)
     inf.table=flextable::set_header_labels(inf.table,
-                                           parameter="Par?metro",n="n",sigma="sigma",
+                                           parameter="Parâmetro estimado",n="n",sigma="sigma",
                                            point.estimate="Estimativa pontual",
                                            interval="Intervalo")
     inf.table=flextable::compose(inf.table, i = 1, j = "sigma", part = "header", 
-                    value = as_paragraph("\u03A3", "/pq"))
+                    value = as_paragraph("\u03C3", "/pq"))
     inf.table=flextable::width(inf.table,width = c(2.5,0.5,0.5,1,1.5))
     inf.table=flextable::align(inf.table,j=1,align = "left",part="all")
     inf.table=flextable::align(inf.table,j=2:3,align = "center",part="all")
