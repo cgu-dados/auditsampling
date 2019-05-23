@@ -131,8 +131,8 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
                                            parameter="Par?metro",n="n",sigma="sigma",
                                            point.estimate="Estimativa pontual",
                                            interval="Intervalo")
-    inf.table=flextable::compose(ft, i = 1, j = "sigma", part = "header", 
-                    value = as_paragraph("\u03A3"))
+    inf.table=flextable::compose(inf.table, i = 1, j = "sigma", part = "header", 
+                    value = as_paragraph("\u03A3", "/pq"))
     inf.table=flextable::width(inf.table,width = c(2.5,0.5,0.5,1,1.5))
     inf.table=flextable::align(inf.table,j=1,align = "left",part="all")
     inf.table=flextable::align(inf.table,j=2:3,align = "center",part="all")
