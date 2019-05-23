@@ -6,7 +6,7 @@
 #' @param sample.data A data.frame representing a sample with the collected data.
 #' @param num.cols The number of the columns where the data is continuous.
 #' @param cat.cols The number of the columns where the data is categorical.
-#' @param alpha Confidence level.
+#' @param alpha (1 - confidence level).
 #' @param type If you want means or totals.
 #' @param print.report \code{FALSE} by default. If \code{TRUE}, prints a .docx table.
 #' @param labels An optional string vector of labels to be putted into printed table.
@@ -25,13 +25,13 @@
 #' @example
 #' data('iris)
 #'
-#' infereceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.9, N=56892,
+#' infereceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.1, N=56892,
 #' type = "total")
 #'
 #' rotulos <- c("Media da espessura da petala","Media do comprimento da petala",
 #' "Media da espessura da sepala","Media do comprimento da sepala",
 #' "Proporcao de setosas","Proporcao de versicolor", "Proporcao de virginica")
-#' infereceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.95, N=56892,
+#' infereceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.05, N=56892,
 #'              type = "mean",labels = rotulos,print.report = TRUE)
 
 infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
@@ -44,7 +44,7 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
     stop("Your label vector do not have the same length of the parameters to be estimated.")
   }
   inference.data=cbind.data.frame(numeric.data,categoric.data)
-  z_alpha=qnorm(1 - ((1 - alpha) / 2))
+  z_alpha=qnorm(1 - (alpha / 2))
   for(i in 1:length(num.cols)){
     if(type=="mean"){
       p.estimate=mean(inference.data[,i],na.rm=TRUE)
