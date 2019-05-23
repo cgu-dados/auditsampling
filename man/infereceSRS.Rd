@@ -15,7 +15,7 @@ infereceSRS(sample.data, num.cols = NULL, cat.cols = NULL, alpha,
 
 \item{cat.cols}{The number of the columns where the data is categorical.}
 
-\item{alpha}{Confidence level.}
+\item{alpha}{(1 - confidence level).}
 
 \item{type}{If you want means or totals.}
 
