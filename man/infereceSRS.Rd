@@ -25,14 +25,12 @@ infereceSRS(sample.data, num.cols = NULL, cat.cols = NULL, alpha,
 Must have the same length of the sum of numerical columns and all levels of categorical columns.}
 }
 \value{
-A data.frame containing the fields:
-\describe{
-\item{parameter} The label of the parameter.
-\item{n} The effective sample size.
-\item{cv} Variation coefficient
-\item{point.estimate} Point estimate.
-\item{interval} Confidence interval.
-}
+  A data.frame containing the fields:
+  \item{parameter} The label of the parameter.
+  \item{n} The effective sample size.
+  \item{cv} Variation coefficient
+  \item{point.estimate} Point estimate.
+  \item{interval} Confidence interval.
 }
 \description{
 This function do Simple Random Sample inferences from a sample data,
