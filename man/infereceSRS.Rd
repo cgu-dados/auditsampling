@@ -38,7 +38,7 @@ given a confidence level. It can calculate estimates for means and totals and pr
 It have option to print a Word *.docx table with the estimate parameters.
 }
 \examples{
-data('iris)
+data('iris')
 
 infereceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.9, N=56892,
 type = "total")
