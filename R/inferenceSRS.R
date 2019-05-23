@@ -78,8 +78,7 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
       }
       inferences[i,1]=paste0("Total de ",names(inference.data)[i])
       inferences[i,2]=n
-      inferences[i,3]=round(sd(inference.data[,i],na.rm=TRUE)/
-        mean(inference.data[,i],na.rm=TRUE),3)
+      inferences[i,3]=round(sd(inference.data[,i],na.rm=TRUE),3)
       inferences[i,4]=round(p.estimate,3)
       inferences[i,5]=paste0("[",round(inf.int,3),";",
                              round(sup.int,3),"]")
@@ -97,8 +96,7 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
       }
       inferences[i,1]=paste0("Propor??o m?dia de ",names(inference.data)[i])
       inferences[i,2]=n
-      inferences[i,3]=round(sqrt(p.estimate*(1 - p.estimate))/
-        p.estimate,3)
+      inferences[i,3]=round(sqrt(p.estimate*(1 - p.estimate)),3)
       inferences[i,4]=round(p.estimate,3)
       inferences[i,5]=paste0("[",round(inf.int,3),";",
                              round(sup.int,3),"]")
@@ -115,15 +113,14 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
       }
       inferences[i,1]=paste0("Quantidade total de ",names(inference.data)[i])
       inferences[i,2]=n
-      inferences[i,3]=round(sqrt(p.estimate*(1 - p.estimate))/
-        p.estimate,3)
+      inferences[i,3]=round(sqrt(p.estimate*(1 - p.estimate)),3)
       inferences[i,4]=p.total
       inferences[i,5]=paste0("[",round(N*inf.int,0),";",
                              round(N*sup.int,0),"]")
     }
 
   }
-  names(inferences)=c("parameter","n","cv","point.estimate","interval")
+  names(inferences)=c("parameter","n","sigma","point.estimate","interval")
   if(!is.null(labels)){
     inferences[,1]=labels
   }
@@ -131,9 +128,11 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
   if(print.report==TRUE){
     inf.table=flextable::flextable(inferences)
     inf.table=flextable::set_header_labels(inf.table,
-                                           parameter="Par?metro",n="n",cv="CV",
+                                           parameter="Par?metro",n="n",sigma="sigma",
                                            point.estimate="Estimativa pontual",
                                            interval="Intervalo")
+    inf.table=flextable::compose(ft, i = 1, j = "sigma", part = "header", 
+                    value = as_paragraph("\u03A3"))
     inf.table=flextable::width(inf.table,width = c(2.5,0.5,0.5,1,1.5))
     inf.table=flextable::align(inf.table,j=1,align = "left",part="all")
     inf.table=flextable::align(inf.table,j=2:3,align = "center",part="all")
