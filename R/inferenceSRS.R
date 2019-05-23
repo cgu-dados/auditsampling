@@ -133,7 +133,7 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
                                            interval="Intervalo")
     inf.table=flextable::compose(inf.table, i = 1, j = "sigma", part = "header", 
                     value = as_paragraph("\u03C3", "/pq"))
-    inf.table=flextable::width(inf.table,width = c(2.5,0.5,0.5,1,1.5))
+    inf.table=flextable::width(inf.table,width = c(2.5,0.75,0.75,1,1))
     inf.table=flextable::align(inf.table,j=1,align = "left",part="all")
     inf.table=flextable::align(inf.table,j=2:4,align = "center",part="all")
     inf.table=flextable::align(inf.table,j=5,align = "right",part="all")
