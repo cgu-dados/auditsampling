@@ -26,11 +26,11 @@ Must have the same length of the sum of numerical columns and all levels of cate
 }
 \value{
   A data.frame containing the fields:
-  \item{parameter}{The label of the parameter}.
-  \item{n}{The effective sample size}.
-  \item{sqr_var}{\eqn{\sqrt{Var}}}.
-  \item{point.estimate}{Point estimate}.
-  \item{interval}{Confidence interval}.
+  \item{parameter}{The label of the parameter.}
+  \item{n}{The effective sample size.}
+  \item{sqr_var}{\eqn{\sqrt{Var}}.}
+  \item{point.estimate}{Point estimate.}
+  \item{interval}{Confidence interval.}
 }
 \description{
 This function do Simple Random Sample inferences from a sample data,
