@@ -3,7 +3,7 @@
 #' If the method choosen is `prop` or `optimum`, the function return the allocation too.
 #' @param data The data.frame containing the variable denoted as the cluster.
 #' @param stratanames The variable name of the considered strata. Can be a vector of variable names.
-#' @param alpha Confidence level.
+#' @param alpha (1 - confidence level).
 #' @param moe Margin of error.
 #' @param S2 The variance, as \eqn{\sigma^2}. Not necessary if `pq` or `V` is not `NULL`.
 #' @param pq The variance, as \eqn{P(1-P)}. Not necessary if `S2` or `V` is not `NULL`.
@@ -20,11 +20,11 @@
 #' @examples
 #' library(survey)
 #' data("api")
-#' nStrata(apipop,stratanames = "stype", alpha = 0.95, moe = 0.05,
+#' nStrata(apipop,stratanames = "stype", alpha = 0.05, moe = 0.05,
 #'         pq = 0.25, N = Inf, method = "none")
-#' nStrata(apipop,stratanames = "stype", alpha = 0.95, moe = 0.05,
+#' nStrata(apipop,stratanames = "stype", alpha = 0.05, moe = 0.05,
 #'         pq = 0.25, N = nrow(apipop), method = "prop")
-#' nStrata(apipop,stratanames = "stype", alpha = 0.95, moe = 0.05,
+#' nStrata(apipop,stratanames = "stype", alpha = 0.05, moe = 0.05,
 #'         pq = 0.25, N = nrow(apipop), method = "optimum")
 #' ### Cochran's example (Cochran, W. G. (2007). Sampling techniques. John Wiley & Sons. p. 106-107)
 #' data_cochran=data.frame(stratum=rep(c(1:6),c(13,18,26,42,73,24)))
@@ -68,7 +68,7 @@ nStrata <- function(data,stratanames,alpha,moe,S2=NULL,pq=NULL,V=NULL,N=Inf,
   if(length(pq)==1){var=rep(pq,n_strata)}}
 
   if(is.null(V)){
-    z_alpha=qnorm(1 - ((1 - alpha) / 2))
+    z_alpha=qnorm(1 - (alpha / 2))
     V=(moe/z_alpha)^2}
   Wh=table(dados$stratum)/sum(table(dados$stratum))
   Nh=table(dados$stratum)
