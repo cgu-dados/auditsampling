@@ -39,10 +39,10 @@ It have option to print a Word *.docx table with the estimate parameters.
 }
 \examples{
 data('iris)
-#'
+
 infereceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.9, N=56892,
 type = "total")
-#'
+
 rotulos <- c("Media da espessura da petala","Media do comprimento da petala",
 "Media da espessura da sepala","Media do comprimento da sepala",
 "Proporcao de setosas","Proporcao de versicolor", "Proporcao de virginica")
