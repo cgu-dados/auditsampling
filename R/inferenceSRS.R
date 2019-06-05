@@ -16,7 +16,6 @@
 #' \describe{
 #' \item{parameter} The label of the parameter.
 #' \item{n} The effective sample size.
-#' \item{sigma} \eqn{\sqrt Variance}}.
 #' \item{point.estimate} Point estimate.
 #' \item{interval} Confidence interval.
 #' }
