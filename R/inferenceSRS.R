@@ -94,7 +94,7 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
         sup.int=p.estimate+z_alpha*sqrt((p.estimate*(1 - p.estimate))/n)*sqrt((N-n)/(N-1))
         inf.int=p.estimate-z_alpha*sqrt((p.estimate*(1 - p.estimate))/n)*sqrt((N-n)/(N-1))
       }
-      inferences[i,1]=paste0("Propor??o m?dia de ",names(inference.data)[i])
+      inferences[i,1]=paste0("Proporçao média de ",names(inference.data)[i])
       inferences[i,2]=n
       inferences[i,3]=round(sqrt(p.estimate*(1 - p.estimate)),3)
       inferences[i,4]=round(p.estimate,3)
@@ -128,7 +128,7 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
   if(print.report==TRUE){
     inf.table=flextable::flextable(inferences)
     inf.table=flextable::set_header_labels(inf.table,
-                                           parameter="Parâmetro estimado",n="n",sq_var="sigma",
+                                           parameter="Parâmetro estimado",n="n",sqr_var="sigma",
                                            point.estimate="Estimativa pontual",
                                            interval="Intervalo")
     inf.table=flextable::compose(inf.table, i = 1, j = "sigma", part = "header", 
