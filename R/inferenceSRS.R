@@ -25,21 +25,21 @@
 #' @example
 #' data('iris)
 #'
-#' infereceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.1, N=56892,
+#' inferenceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.1, N=56892,
 #' type = "total")
 #'
 #' rotulos <- c("Media da espessura da petala","Media do comprimento da petala",
 #' "Media da espessura da sepala","Media do comprimento da sepala",
 #' "Proporcao de setosas","Proporcao de versicolor", "Proporcao de virginica")
-#' infereceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.05, N=56892,
+#' inferenceSRS(iris,num.cols = 1:4,cat.cols = 5,alpha = 0.05, N=56892,
 #'              type = "mean",labels = rotulos,print.report = TRUE)
 
-infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
-                    type=c("mean","total"),print.report=FALSE,labels=NULL){
+inferenceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
+                        type=c("mean","total"),print.report=FALSE,labels=NULL){
   numeric.data=sample.data[,num.cols]
   formula=as.formula(paste0("~",names(sample.data)[cat.cols],"-1",collapse="+"))
   categoric.data=model.matrix(formula,sample.data)
-  inferences=data.frame(matrix(nrow = 1,ncol=5))
+  inferences=data.frame(matrix(nrow = 1,ncol=4))
   if(!is.null(labels) && length(labels)!=(ncol(numeric.data)+ncol(categoric.data))){
     stop("Your label vector do not have the same length of the parameters to be estimated.")
   }
@@ -53,16 +53,14 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
       inf.int=p.estimate-z_alpha*(sd(inference.data[,i],na.rm=TRUE)/sqrt(n))
       if(!is.infinite(N)){
         sup.int=p.estimate+z_alpha*(sd(inference.data[,i],na.rm=TRUE)/sqrt(n))*
-        (1 - (n/N))
+          (1 - (n/N))
         inf.int=p.estimate-z_alpha*(sd(inference.data[,i],na.rm=TRUE)/sqrt(n))*
           (1 - (n/N))
       }
       inferences[i,1]=paste0("M?dia de ",names(inference.data)[i])
       inferences[i,2]=n
-      inferences[i,3]=round(sd(inference.data[,i],na.rm=TRUE)/
-        mean(inference.data[,i],na.rm=TRUE),3)
-      inferences[i,4]=round(p.estimate,3)
-      inferences[i,5]=paste0("[",round(inf.int,3),";",
+      inferences[i,3]=round(p.estimate,3)
+      inferences[i,4]=paste0("[",round(inf.int,3),";",
                              round(sup.int,3),"]")
     }
     if(type=="total"){
@@ -78,9 +76,8 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
       }
       inferences[i,1]=paste0("Total de ",names(inference.data)[i])
       inferences[i,2]=n
-      inferences[i,3]=round(sd(inference.data[,i],na.rm=TRUE),3)
-      inferences[i,4]=round(p.estimate,3)
-      inferences[i,5]=paste0("[",round(inf.int,3),";",
+      inferences[i,3]=round(p.estimate,3)
+      inferences[i,4]=paste0("[",round(inf.int,3),";",
                              round(sup.int,3),"]")
     }
   }
@@ -96,9 +93,8 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
       }
       inferences[i,1]=paste0("Proporçao média de ",names(inference.data)[i])
       inferences[i,2]=n
-      inferences[i,3]=round(sqrt(p.estimate*(1 - p.estimate)),3)
-      inferences[i,4]=round(p.estimate,3)
-      inferences[i,5]=paste0("[",round(inf.int,3),";",
+      inferences[i,3]=round(p.estimate,3)
+      inferences[i,4]=paste0("[",round(inf.int,3),";",
                              round(sup.int,3),"]")
     }
     if(type=="total"){
@@ -113,14 +109,13 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
       }
       inferences[i,1]=paste0("Quantidade total de ",names(inference.data)[i])
       inferences[i,2]=n
-      inferences[i,3]=round(sqrt(p.estimate*(1 - p.estimate)),3)
-      inferences[i,4]=p.total
-      inferences[i,5]=paste0("[",round(N*inf.int,0),";",
+      inferences[i,3]=p.total
+      inferences[i,4]=paste0("[",round(N*inf.int,0),";",
                              round(N*sup.int,0),"]")
     }
-
+    
   }
-  names(inferences)=c("parameter","n","sqr_var","point.estimate","interval")
+  names(inferences)=c("parameter","n","point.estimate","interval")
   if(!is.null(labels)){
     inferences[,1]=labels
   }
@@ -128,15 +123,13 @@ infereceSRS <- function(sample.data,num.cols=NULL,cat.cols=NULL,alpha,N=Inf,
   if(print.report==TRUE){
     inf.table=flextable::flextable(inferences)
     inf.table=flextable::set_header_labels(inf.table,
-                                           parameter="Parâmetro estimado",n="n",sqr_var="sigma",
+                                           parameter="Parâmetro estimado",n="n",
                                            point.estimate="Estimativa pontual",
                                            interval="Intervalo")
-    inf.table=flextable::compose(inf.table, i = 1, j = "sigma", part = "header", 
-                    value = as_paragraph("\u03C3", "/pq"))
-    inf.table=flextable::width(inf.table,width = c(2.5,0.75,0.75,1,1))
+    inf.table=flextable::width(inf.table,width = c(2.5,0.75,1.5,1.75))
     inf.table=flextable::align(inf.table,j=1,align = "left",part="all")
-    inf.table=flextable::align(inf.table,j=2:4,align = "center",part="all")
-    inf.table=flextable::align(inf.table,j=5,align = "right",part="all")
+    inf.table=flextable::align(inf.table,j=2:4,align = "right",part="all")
+    inf.table=flextable::font(inf.table,fontname = "Times New Roman", part = "all")
     print(inf.table,preview="docx")
   }
 }
