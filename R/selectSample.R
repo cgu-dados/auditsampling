@@ -10,7 +10,8 @@
 #' method of selection has been chosen, returns the \code{k} and cumulated \code{k} also.
 #' @import sampling
 #' @example
-#' To be provided
+#' pilot <- selectSample(siasgdw[siasgdw$id_unidade == 170010, ], method = "srswor", 
+#' size = 30, seed = 150)
 
 selectSample <- function(data,stratum=NULL,method,size,seed){
   if(!method %in% c("srswor","srswr","systematic")){
