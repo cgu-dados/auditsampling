@@ -24,3 +24,7 @@ method of selection has been chosen, returns the \code{k} and cumulated \code{k}
 \description{
 Sample and outputs a data.frame with desired technique and size.
 }
+\examples{
+pilot <- selectSample(siasgdw[siasgdw$id_unidade == 170010, ],
+method = "srswor", size = 30, seed = 150)
+}
