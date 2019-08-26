@@ -1,21 +1,23 @@
-#' @title Calculates the remaing sample size when using pilot sample
+title Calculates the remaing sample size when using pilot sample
 #' @description Based on a pilot sample, this function calculates the remain elements to the final sample
 #' given the variance considered.
 #' @param s2 The variance, as \eqn{\sigma^2}. Not necessary if \code{pq} is not \code{NULL}.
 #' @param pq The variance, as \eqn{P(1-P)}. Not necessary if \code{s2} is not \code{NULL}.
 #' @param n1 The size of the pilot sample.
-#' @param V The target variance, as \eqn{(d/t)^2}, where \code{d} is the margin of error, and \code{t} is the z-value.
+#' @param alpha 1 - confidence level.
+#' @param moe Margin of error.
 #' @return The final sample is
 #' \deqn{n = n_1 + n_2}
 #' Where \eqn{n_2} is the value returned by this function.
 #' @references COCHRAN, William Gemmell. Sampling techniques-3. 1977.
 #' @export
 #' @examples
-#' nPilot(s2=13.5,n1=30,V=(5/1.96)^2)
-#' nPilot(pq=0.15,n1=30,V=(0.05/1.65)^2)
+#' nPilot(s2=13.5,n1=30,alpha=0.05,moe=5)
+#' nPilot(pq=0.15,n1=30,alpha=0.1,moe=0.05)
 
 
-nPilot <- function(s2=NULL,pq=NULL,n1,V){
+nPilot <- function(s2=NULL, pq=NULL, n1, alpha, moe){
+  V=(moe/qnorm(1 - (alpha / 2)))^2
   if(is.null(s2) && is.null(pq)){
     stop('You must provide s2 or pq argument.')
   }
