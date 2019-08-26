@@ -4,7 +4,7 @@
 \alias{nPilot}
 \title{Calculates the remaing sample size when using pilot sample}
 \usage{
-nPilot(s2 = NULL, pq = NULL, n1, V)
+nPilot(s2 = NULL, pq = NULL, n1, alpha, moe)
 }
 \arguments{
 \item{s2}{The variance, as \eqn{\sigma^2}. Not necessary if \code{pq} is not \code{NULL}.}
@@ -13,7 +13,9 @@ nPilot(s2 = NULL, pq = NULL, n1, V)
 
 \item{n1}{The size of the pilot sample.}
 
-\item{V}{The target variance, as \eqn{(d/t)^2}, where \code{d} is the margin of error, and \code{t} is the z-value.}
+\item{alpha}{1 - confidence level.}
+
+\item{moe}{Margin of error.}
 }
 \value{
 The final sample is
@@ -25,8 +27,8 @@ Based on a pilot sample, this function calculates the remain elements to the fin
 given the variance considered.
 }
 \examples{
-nPilot(s2=13.5,n1=30,V=(5/1.96)^2)
-nPilot(pq=0.15,n1=30,V=(0.05/1.65)^2)
+nPilot(s2=13.5,n1=30,alpha=0.05,moe=5)
+nPilot(pq=0.15,n1=30,alpha=0.1,moe=0.05)
 }
 \references{
 COCHRAN, William Gemmell. Sampling techniques-3. 1977.
