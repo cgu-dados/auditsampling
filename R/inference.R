@@ -129,7 +129,7 @@ inference <- function(sample.data,num.y=NULL,denom.x=NULL,total.x=NULL,
         interval <- c(point - (z * se), point + (z * se))
         n <- length(sample.data[,i][!is.na(sample.data[,i])])
         inferences <- rbind.data.frame(inferences,
-                                       data.frame(var=paste0("M?dia de ",names(sample.data)[i]),
+                                       data.frame(var=paste0("Média de ",names(sample.data)[i]),
                                                   n=n, SE=round(se,4), p_estimate=round(point,3),
                                                   lwr_int=round(interval[1],3),
                                                   upr_int=round(interval[2],3)))
@@ -140,7 +140,7 @@ inference <- function(sample.data,num.y=NULL,denom.x=NULL,total.x=NULL,
         interval <- c(point - (z * se), point + (z * se))
         n <- length(sample.data[,i][!is.na(sample.data[,i])])
         inferences <- rbind.data.frame(inferences,
-                                       data.frame(var=paste0("M?dia de ",names(sample.data)[i]),
+                                       data.frame(var=paste0("Média de ",names(sample.data)[i]),
                                                   n=n, SE=round(se,4), p_estimate=round(point,3),
                                                   lwr_int=round(interval[1],3),
                                                   upr_int=round(interval[2],3)))
@@ -185,7 +185,7 @@ inference <- function(sample.data,num.y=NULL,denom.x=NULL,total.x=NULL,
       interval <- c(point - (z * se), point + (z * se))
       n <- length(sample.data[,i][!is.na(sample.data[,i])])
       inferences <- rbind.data.frame(inferences,
-                                     data.frame(var=paste0("Raz?o entre ",names(sample.data)[i],
+                                     data.frame(var=paste0("Razão entre ",names(sample.data)[i],
                                                            " e ",names(sample.data)[denom.x[j]]),
                                                 n=n, SE=round(se,4), p_estimate=round(point,3),
                                                 lwr_int=round(interval[1],3),
@@ -205,7 +205,7 @@ inference <- function(sample.data,num.y=NULL,denom.x=NULL,total.x=NULL,
         interval <- as.numeric(confint(infs))
         n <- length(sample.data[,cat.y[i]][!is.na(sample.data[,cat.y[i]])])
         inferences <- rbind.data.frame(inferences,
-                                       data.frame(var=paste0("Propor??o de ",names(sample.data)[cat.y[i]],
+                                       data.frame(var=paste0("Proporção de ",names(sample.data)[cat.y[i]],
                                                              " | ", unique(sample.data[,cat.y[i]])[k]),
                                                   n=n,
                                                   SE=round(se,4), p_estimate=round(point,3),
