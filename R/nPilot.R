@@ -1,4 +1,4 @@
-title Calculates the remaing sample size when using pilot sample
+#' @title Calculates the remaing sample size when using pilot sample
 #' @description Based on a pilot sample, this function calculates the remain elements to the final sample
 #' given the variance considered.
 #' @param s2 The variance, as \eqn{\sigma^2}. Not necessary if \code{pq} is not \code{NULL}.
