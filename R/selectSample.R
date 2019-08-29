@@ -25,8 +25,10 @@ selectSample <- function(data,stratum=NULL,method,size,seed){
         strata=do.call(paste, c(data[stratum], sep = "_"))
         data$stratum=strata
         strata=unique(strata)
+        strata=strata[order(strata, names(size))]
       }else{
         strata=unique(data[,stratum])
+        strata=strata[order(strata, names(size))]
         data$stratum=data[,stratum]
       }
       for(i in seq_along(strata)){
