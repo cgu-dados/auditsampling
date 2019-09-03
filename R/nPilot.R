@@ -6,14 +6,17 @@
 #' @param n1 The size of the pilot sample.
 #' @param alpha 1 - confidence level.
 #' @param moe Margin of error.
+#' @param N Population size.
 #' @return The final sample is
 #' \deqn{n = n_1 + n_2}
 #' Where \eqn{n_2} is the value returned by this function.
 #' @references COCHRAN, William Gemmell. Sampling techniques-3. 1977.
 #' @export
 #' @examples
-#' nPilot(s2=13.5,n1=30,alpha=0.05,moe=5)
-#' nPilot(pq=0.15,n1=30,alpha=0.1,moe=0.05)
+#' nPilot(s2=13.5,n1=30,alpha=0.05,moe=5, N = 306)
+#' nPilot(s2=13.5,n1=30,alpha=0.05,moe=5, N = 5000)
+#' nPilot(pq=0.15,n1=30,alpha=0.1,moe=0.05, N = 306)
+#' nPilot(pq=0.15,n1=30,alpha=0.1,moe=0.05, N = 5000)
 
 
 nPilot <- function(s2=NULL, pq=NULL, n1, alpha, moe, N){
