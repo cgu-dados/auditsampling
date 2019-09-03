@@ -16,17 +16,23 @@
 #' nPilot(pq=0.15,n1=30,alpha=0.1,moe=0.05)
 
 
-nPilot <- function(s2=NULL, pq=NULL, n1, alpha, moe){
+nPilot <- function(s2=NULL, pq=NULL, n1, alpha, moe, N){
   V=(moe/qnorm(1 - (alpha / 2)))^2
   if(is.null(s2) && is.null(pq)){
     stop('You must provide s2 or pq argument.')
   }
   if(!is.null(s2)){
     var=s2
-    n=(var/V)*(1 + (2 / n1))
+    n_linha=(var/V)*(1 + (2 / n1))
+    n_linha=n_linha+n1
+    n2=n_linha/(1 + (n_linha / N))
+    n=n2-n1
   }else{
     var=pq
-    n=(pq / V)+((3-(8*pq))/pq)+((1 - (3 * pq))/(V*n1))
+    n_linha=(pq / V)+((3-(8*pq))/pq)+((1 - (3 * pq))/(V*n1))
+    n_linha=n_linha+n1
+    n2=n_linha/(1 + (n_linha / N))
+    n=n2-n1
     }
   return(ceiling(n))
 }
