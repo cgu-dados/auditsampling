@@ -16,7 +16,7 @@ nPilot(s2 = NULL, pq = NULL, n1, alpha, moe, N)
 \item{alpha}{1 - confidence level.}
 
 \item{moe}{Margin of error.}
-  
+
 \item{N}{Population size.}
 }
 \value{
