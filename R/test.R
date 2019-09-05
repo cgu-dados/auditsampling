@@ -58,7 +58,7 @@ test <- function(sample.data, num.col=NULL,prop.col=NULL,mu0=NULL,p0=NULL,
   if((length(mu0) + length(p0)) != (length(num.col) + length(prop.col))){
     stop("The vector lengths of 'num.col' + 'prop.col' must be the same as 'mu0' + 'p0'.")
   }
-  if(any(p0 > 1 && p0 < 0)){
+  if(!is.null(p0) && any(p0 > 1 && p0 < 0)){
     stop("The 'p0' vector must contain values between 0 and 1.")
   }
   if(any(!alternative %in% c(1,2))){
