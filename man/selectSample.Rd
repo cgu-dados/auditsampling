@@ -4,10 +4,13 @@
 \alias{selectSample}
 \title{Select sample and returns the \code{data.frame}}
 \usage{
-selectSample(data, stratum = NULL, method, size, seed)
+selectSample(data, stratum = NULL, method, size, seed,
+  resample.data = NULL)
 }
 \arguments{
 \item{data}{The data.frame containing the population data.}
+
+\item{stratum}{A vector with strata variable names.}
 
 \item{method}{Select between \code{srswr}, \code{srswor} or \code{systematic}.}
 
@@ -15,7 +18,7 @@ selectSample(data, stratum = NULL, method, size, seed)
 
 \item{seed}{The seed for the random generator.}
 
-\item{stratanames}{A vector with strata variable names.}
+\item{resample.data}{A data frame used as pilot sample. Its useful to ignore the observations sampled before and to maintain the original fpc.}
 }
 \value{
 A \code{data.frame} additionally with \code{Prob} and \code{fpc} columns. If the systematic
@@ -23,8 +26,4 @@ method of selection has been chosen, returns the \code{k} and cumulated \code{k}
 }
 \description{
 Sample and outputs a data.frame with desired technique and size.
-}
-\examples{
-pilot <- selectSample(siasgdw[siasgdw$id_unidade == 170010, ],
-method = "srswor", size = 30, seed = 150)
 }
