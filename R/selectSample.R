@@ -62,7 +62,7 @@ selectSample <- function(data,stratum=NULL,method,size,seed,resample.data=NULL){
       if(!is.null(resample.data)){
         if(!is.null(stratum)){
           sample$fpc=NULL
-          id=as.numeric(c(rownames(resample.data), rownames(sample)))
+          id=as.numeric(c(resample.data$ID_unit, rownames(sample)))
           sample=merge(sample,gfpc,by.x="stratum", by.y = names(gfpc)[2])
           sample=smartbind(resample.data,sample)
           sample$ID_unit=id
@@ -70,7 +70,7 @@ selectSample <- function(data,stratum=NULL,method,size,seed,resample.data=NULL){
           return(sample)
         }else{
           sample$fpc=gfpc
-          id=as.numeric(c(rownames(resample.data), rownames(sample)))
+          id=as.numeric(c(resample.data$ID_unit, rownames(sample)))
           sample=smartbind(resample.data,sample)
           sample$ID_unit=id
           sample=sample[order(sample$ID_unit),]
@@ -90,7 +90,7 @@ selectSample <- function(data,stratum=NULL,method,size,seed,resample.data=NULL){
     if(!is.null(resample.data)){
       if(!is.null(stratum)){
         sample$fpc=NULL
-        id=as.numeric(c(rownames(resample.data), rownames(sample)))
+        id=as.numeric(c(resample.data$ID_unit, rownames(sample)))
         sample=merge(sample,gfpc,by.x=names(sample)[stratum_column], by.y = names(gfpc)[2])
         sample=smartbind(resample.data,sample)
         sample$ID_unit=round(id,0)
@@ -111,7 +111,7 @@ selectSample <- function(data,stratum=NULL,method,size,seed,resample.data=NULL){
       sample=sample[order(sample$ID_unit),]
       if(!is.null(resample.data)){
         sample$fpc=gfpc
-        id=as.numeric(c(rownames(resample.data), rownames(sample)))
+        id=as.numeric(c(resample.data$ID_unit, rownames(sample)))
         sample=smartbind(resample.data,sample)
         sample$ID_unit=id
         sample=sample[order(sample$ID_unit),]
@@ -129,7 +129,7 @@ selectSample <- function(data,stratum=NULL,method,size,seed,resample.data=NULL){
       sample=sample[order(sample$ID_unit),]
       if(!is.null(resample.data)){
         sample$fpc=gfpc
-        id=as.numeric(c(rownames(resample.data), rownames(sample)))
+        id=as.numeric(c(resample.data$ID_unit, rownames(sample)))
         sample=smartbind(resample.data,sample)
         sample$ID_unit=round(id,0)
         sample=sample[order(sample$ID_unit),]
@@ -150,7 +150,7 @@ selectSample <- function(data,stratum=NULL,method,size,seed,resample.data=NULL){
       sample=sample[order(sample$ID_unit),]
       if(!is.null(resample.data)){
         sample$fpc=gfpc
-        id=as.numeric(c(rownames(resample.data), rownames(sample)))
+        id=as.numeric(c(resample.data$ID_unit, rownames(sample)))
         sample=smartbind(resample.data,sample)
         sample$ID_unit=id
         sample=sample[order(sample$ID_unit),]
