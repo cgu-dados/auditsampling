@@ -28,7 +28,7 @@ selectSample <- function(data,stratum=NULL,method,size,seed,resample.data=NULL){
       stratum_column=which(names(resample.data) == stratum)
       gfpc=unique(resample.data[,c(fpc_column,stratum_column)])
     }else{
-      gfpc=resample.data[,fpc_column]
+      gfpc=unique(resample.data[,fpc_column])
     }
     data=data[-resample.data$ID_unit,]
   }
