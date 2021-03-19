@@ -215,7 +215,7 @@ inference <- function(sample.data,num.y=NULL,denom.x=NULL,total.x=NULL,
     }
     if(type[j] == "total"){
       for(k in seq_along(formulas)){
-        infs <- svytotal(as.formula(formulas[k]), svy)
+        infs <- svytotal(as.formula(formulas[k]), svy, na.rm = TRUE)
         point <- round(as.numeric(infs[2]),0)
         se <- as.numeric(SE(infs)[2])
         interval <- as.numeric(confint(infs))
