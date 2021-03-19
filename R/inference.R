@@ -199,7 +199,7 @@ inference <- function(sample.data,num.y=NULL,denom.x=NULL,total.x=NULL,
     if(type[j] == "mean"){
       for(k in seq_along(formulas)){
         infs <- svyciprop(as.formula(formulas[k]), svy,
-                          method = "mean", level = 1 - alpha)
+                          method = "mean", level = 1 - alpha, na.rm = TRUE)
         point <- as.numeric(infs)
         se <- as.numeric(SE(infs))
         interval <- as.numeric(confint(infs))
